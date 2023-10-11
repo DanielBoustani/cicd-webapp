@@ -1,0 +1,29 @@
+services:
+
+  webapp:
+    build: .
+    environment:
+      MONGO_URL: mongodb://database:27017
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./database:/app/database
+   
+  database:
+    image: mongo:4.4.18
+    depends_on:
+      - webapp
+    volumes:
+      - mongo_db:/data/db
+    ports:
+      - "27017:27017"
+
+  testing:
+    build: .
+    environment:
+      API_URL: http://webapp:3000 
+    depends_on:
+      - webapp
+
+volumes:
+  mongo_db: 
