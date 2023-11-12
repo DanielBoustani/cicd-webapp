@@ -18,3 +18,10 @@ jobs:
         run: yarn install
       - name: Linting the project
         run: yarn lint
+      - name: Building Docker image 
+        uses: docker/build-push-action@v4
+        with:
+          context: ../..
+          tags: dani450/webapp
+          push: false
+           
