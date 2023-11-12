@@ -21,7 +21,7 @@ jobs:
       - name: Building Docker image 
         uses: docker/build-push-action@v4
         with:
-          context: ../..
+          context: .
           tags: dani450/webapp
           push: false
            
